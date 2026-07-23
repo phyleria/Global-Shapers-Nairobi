@@ -32,7 +32,7 @@ const members = [
   'Krupa Mandavia','Trevor Koronei','Bernice Mwaura','Prestone Katiedzo',
   'Dennis Cherogony','Kelvin Ndambuki','Isaac Chibole','Niels Peters Williams',
   'Hassan Koki','Tabitha Wang\'ombe','Caleb Munyoki','Wanjiru Mwangi',
-  'Dorcas Litunya','Edel Koki','Laura Mugeha','Sam Nyamwange',
+  'Dorcas Litunya','Edel Koki','Laura Mugeha',
   'Sean Gichuru','Merlene Amonde','Brian Njoroge','Asha Makana',
   'Valentine Muchiri','Kate Mbugua','Elizabeth Kigochi','Njoki Njore',
 ]

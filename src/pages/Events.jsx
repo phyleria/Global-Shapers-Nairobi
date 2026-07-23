@@ -24,15 +24,7 @@ export default function EventsPage() {
   return (
     <div style={{ paddingTop: '5rem' }}>
       {/* Hero */}
-      <div style={{ background: 'var(--blue)', padding: '4rem 0 5rem', textAlign: 'center' }}>
-        <div className="container">
-          <span className="eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}></span>
-          <h1 style={{ color: '#fff', fontSize: 'clamp(2.2rem,5vw,4rem)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
-            Join us in person and online
-          </h1>
-          
-        </div>
-      </div>
+     
 
       {/* Tabs */}
       <div style={{ background: 'var(--white)', borderBottom: '1px solid var(--border)', position: 'sticky', top: 68, zIndex: 10 }}>

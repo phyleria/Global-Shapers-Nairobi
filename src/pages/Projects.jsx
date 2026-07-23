@@ -6,7 +6,6 @@ const projects = [
     id: 'technovation',
     tag: 'Education and Future of Work',
     title: 'Technovation',
-    tagline: 'Empowering girls to code, build, and lead.',
     img: '/project-technovation.JPG',
     accent: 'var(--blue)',
     desc: [
@@ -20,7 +19,6 @@ const projects = [
     id: 'dining',
     tag: 'Underserved Communities',
     title: 'Dining in the Dark',
-    tagline: 'Building empathy, one meal at a time.',
     img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80',
     accent: 'var(--blue-dark)',
     desc: [
@@ -36,7 +34,6 @@ const projects = [
     tag: 'Innovation and Entrepreneurship',
     isNew: true,
     title: 'Food Wastage Solution',
-    tagline: 'From hotel surplus to community tables.',
     img: 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=900&q=80',
     accent: 'var(--teal)',
     desc: [
@@ -45,13 +42,12 @@ const projects = [
       'This project is being developed in collaboration with PadMad and Woodland Star International School, combining Global Shapers members\' professional expertise with student innovation. The project will culminate in an Impact Dinner event where the platform is demonstrated live.',
     ],
     impact: [],
-    partners: ['PadMad Kenya', 'Woodland Star International School'],
+    partners: ['Woodland Star International School'],
   },
   {
     id: 'finlit',
     tag: 'Education and Future of Work',
     title: 'Financial Literacy Series',
-    tagline: 'Practical money skills for Nairobi\'s youth.',
     img: '/project-literacy.jpg',
     accent: 'var(--blue-mid)',
     desc: [
@@ -59,7 +55,7 @@ const projects = [
       'Sessions cover budgeting and saving, understanding credit and debt, investing basics, navigating Kenya\'s financial system including mobile money and banking, and planning for long-term financial goals. The programme is designed to be relatable and grounded in the real financial realities of young Kenyans.',
       'A new cohort launches in January 2027, building on lessons from previous editions and incorporating updated content on digital financial tools and platforms.',
     ],
-    partners: [],
+    partners: ['Kenya Red Cross'],
   },
 ]
 
@@ -77,16 +73,7 @@ export default function ProjectsPage() {
 
   return (
     <div style={{ paddingTop: '5rem' }}>
-      {/* Hero */}
-      <div style={{ background: 'var(--blue)', padding: '4rem 0 5rem', textAlign: 'center' }}>
-        <div className="container">
-          <span className="eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}></span>
-          <h1 style={{ color: '#fff', fontSize: 'clamp(2.2rem,5vw,4rem)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
-            Projects that create impact
-          </h1>
-         
-        </div>
-      </div>
+      
 
       {/* Projects */}
       <div style={{ background: 'var(--white)' }}>
@@ -111,7 +98,6 @@ export default function ProjectsPage() {
                   <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
                     <span style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--blue)', border: '1px solid var(--blue)', borderRadius: '100px', padding: '0.25rem 0.75rem' }}>{p.tag}</span>
                   </div>
-                  <div style={{ width: 48, height: 4, borderRadius: 2, background: p.accent, marginBottom: '1rem' }}/>
                   <h2 style={{ fontSize: 'clamp(1.8rem,3.5vw,2.8rem)', fontWeight: 800, color: 'var(--text-dark)', letterSpacing: '-0.02em', marginBottom: '0.5rem' }}>{p.title}</h2>
                   <p style={{ fontSize: '1rem', color: 'var(--blue)', fontWeight: 600, marginBottom: '1.5rem' }}>{p.tagline}</p>
                   {p.desc.map((d, j) => (

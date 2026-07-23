@@ -19,6 +19,10 @@ export default function Nav() {
   const textColor = onDark ? 'rgba(255,255,255,0.9)' : 'var(--text-mid)'
   const hoverBg = onDark ? 'rgba(255,255,255,0.1)' : 'var(--blue-light)'
   const hoverColor = onDark ? '#fff' : 'var(--blue)'
+  const buttonBg = onDark ? '#fff' : 'var(--blue)'
+const buttonText = onDark ? 'var(--blue)' : '#fff'
+const buttonBorder = onDark ? 'none' : 'none'
+const buttonHoverBg = onDark ? 'rgba(255,255,255,0.9)' : 'var(--blue-hover)'
 
   const links = [
     { label: 'About', to: '/#about' },
@@ -67,16 +71,31 @@ export default function Nav() {
             </li>
           ))}
           <li style={{ marginLeft: '0.5rem' }}>
-            <Link to="/partner" style={{
-              background: onDark ? 'rgba(255,255,255,0.15)' : 'var(--blue)',
-              color: '#fff', border: onDark ? '1px solid rgba(255,255,255,0.3)' : 'none',
-              fontWeight: 600, fontSize: '0.875rem',
-              padding: '0.5rem 1.25rem', borderRadius: '100px',
-              display: 'inline-block', transition: 'background 0.2s, transform 0.2s',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.background = onDark ? 'rgba(255,255,255,0.25)' : 'var(--blue-hover)'; e.currentTarget.style.transform='translateY(-1px)'; }}
-            onMouseLeave={e => { e.currentTarget.style.background = onDark ? 'rgba(255,255,255,0.15)' : 'var(--blue)'; e.currentTarget.style.transform='translateY(0)'; }}
-            >Partner With Us</Link>
+           <Link
+  to="/partner"
+  style={{
+    background: buttonBg,
+    color: buttonText,
+    border: buttonBorder,
+    fontWeight: 600,
+    fontSize: '0.875rem',
+    padding: '0.5rem 1.25rem',
+    borderRadius: '100px',
+    display: 'inline-block',
+    transition: 'background 0.2s, transform 0.2s, color 0.2s',
+  }}
+  onMouseEnter={e => {
+    e.currentTarget.style.background = buttonHoverBg
+    e.currentTarget.style.transform = 'translateY(-1px)'
+  }}
+  onMouseLeave={e => {
+    e.currentTarget.style.background = buttonBg
+    e.currentTarget.style.color = buttonText
+    e.currentTarget.style.transform = 'translateY(0)'
+  }}
+>
+  Partner With Us
+</Link>
           </li>
         </ul>
 

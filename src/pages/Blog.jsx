@@ -42,15 +42,7 @@ export default function BlogPage() {
   return (
     <div style={{ paddingTop: '5rem' }}>
       {/* Hero */}
-      <div style={{ background: 'var(--blue)', padding: '4rem 0 5rem', textAlign: 'center' }}>
-        <div className="container">
-          <span className="eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}></span>
-          <h1 style={{ color: '#fff', fontSize: 'clamp(2.2rem,5vw,4rem)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
-            Our Blog
-          </h1>
-          
-        </div>
-      </div>
+     
 
       <div style={{ background: 'var(--white)', padding: 'clamp(3rem,6vw,5rem) 0' }}>
         <div className="container">

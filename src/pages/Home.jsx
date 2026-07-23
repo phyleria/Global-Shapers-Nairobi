@@ -9,7 +9,7 @@ const ArrowRight = ({ size = 16 }) => (
 )
 
 // No "Connect" in the words
-const WORDS = ['Build.', 'Lead.']
+const WORDS = ['Shape.', 'Build.', 'Create.']
 
 function Hero() {
   const [wi, setWi] = useState(0)
@@ -89,7 +89,7 @@ function Hero() {
             { n: '2012', l: 'Established in Nairobi' },
             { n: '20+', l: 'Active hub members' },
             { n: '10+', l: 'Projects delivered' },
-            { n: '4', l: 'Community pillars' },
+            { n: '15+', l: 'Partners' },
           ].map((s, i) => (
             <div key={i}>
               <div style={{ fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 800, color: 'var(--white)', lineHeight: 1 }}>{s.n}</div>
@@ -151,9 +151,8 @@ function About() {
 
           {/* Text */}
           <div>
-            <span className="eyebrow">Who We Are</span>
-            <h2 className="section-heading" style={{ marginBottom: '1.5rem', maxWidth: '380px' }}>
-              Young leaders building<br/><em>Nairobi's future.</em>
+            <h2 className="section-heading" style={{ marginBottom: '1.5rem', maxWidth: '380px', color: 'var(--blue)' }}>
+              Leaders building Nairobi's future.
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
               {[
@@ -176,7 +175,7 @@ function About() {
 function Pillars() {
   const pillars = [
     { name: 'Innovation and Entrepreneurship', desc: 'Building tech solutions, fostering startup thinking, and supporting young entrepreneurs across Nairobi.', color: 'var(--blue)' },
-    { name: 'Education and Future of Work', desc: 'Equipping young people with skills to thrive, from coding through Technovation to financial literacy.', color: 'var(--blue-dark)' },
+    { name: 'Education & Future of Work', desc: 'Equipping young people with skills to thrive, from coding through Technovation to financial literacy.', color: 'var(--blue-dark)' },
     { name: 'Environment and Sustainability', desc: 'Driving climate action, building food wastage solutions, and advocating for a greener Nairobi.', color: 'var(--teal)' },
     { name: 'Underserved Communities', desc: 'Creating inclusive opportunities for marginalised groups through Dining in the Dark and civic engagement.', color: 'var(--blue-mid)' },
   ]
@@ -184,7 +183,7 @@ function Pillars() {
     <section id="pillars" className="section" style={{ background: 'var(--off-white)' }}>
       <div className="container">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem', flexWrap: 'wrap', gap: '1.5rem' }}>
-          <div><h2 className="section-heading">Our four pillars</h2></div>
+          <div><h2 className="section-heading"style={{ color: 'var(--text-dark)' }}>Our four pillars</h2></div>
           <Link to="/pillars" className="arrow-link">Learn more <ArrowRight /></Link>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1.25rem' }} className="pillars-grid">
@@ -197,8 +196,15 @@ function Pillars() {
             onMouseEnter={e => { e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='var(--shadow-md)'; }}
             onMouseLeave={e => { e.currentTarget.style.transform='translateY(0)'; e.currentTarget.style.boxShadow='var(--shadow-sm)'; }}
             >
-              <div style={{ width: 44, height: 4, borderRadius: 2, background: p.color, marginBottom: '1.25rem' }}/>
-              <h3 style={{ fontSize: '0.975rem', fontWeight: 700, color: 'var(--text-dark)', marginBottom: '0.75rem', lineHeight: 1.4 }}>{p.name}</h3>
+              <h3 style={{ fontSize: '0.975rem', fontWeight: 700, color: 'var(--blue-dark)', marginBottom: '0.75rem', lineHeight: 1.4 }}>{p.name}</h3>
+              <div
+  style={{
+    width: '70%',
+    height: '3px',
+    background: 'var(--blue)',
+    marginBottom: '1rem',
+  }}
+/>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.7, flex: 1 }}>{p.desc}</p>
             </Link>
           ))}
@@ -211,16 +217,16 @@ function Pillars() {
 
 function FeaturedProjects() {
   const projects = [
-    { id: 'technovation', tag: 'Education', title: 'Technovation', desc: 'The world\'s largest tech entrepreneurship programme for girls. Over 300 girls have learned to code and build mobile apps addressing real community challenges.', meta: 'Year 4 underway', img: '/project-technovation.JPG', accent: 'var(--blue)' },
-    { id: 'dining', tag: 'Community', title: 'Dining in the Dark', desc: 'An immersive dining experience in complete darkness, guided by visually impaired hosts, building empathy and advocacy for the visually impaired community in Nairobi.', meta: 'Returning October 2026', img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80', accent: 'var(--blue-dark)' },
-    { id: 'food', tag: 'Innovation', title: 'Food Wastage Solution', isNew: true, desc: 'A new platform to track, reduce, and redistribute surplus food from Nairobi hotels to communities in need, in collaboration with PadMad and Woodland Star International.', meta: 'In development 2026', img: 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=900&q=80', accent: 'var(--teal)' },
-    { id: 'finlit', tag: 'Education', title: 'Financial Literacy Series', desc: 'Equipping young people across Nairobi with practical financial knowledge, from budgeting and saving to navigating Kenya\'s financial ecosystem.', meta: 'New cohort January 2027', img: '/project-literacy.jpg', accent: 'var(--blue-mid)' },
+    { id: 'technovation', title: 'Technovation', desc: 'The world\'s largest tech entrepreneurship programme for girls. Over 300 girls have learned to code and build mobile apps addressing real community challenges.', img: '/project-technovation.JPG', accent: 'var(--blue)' },
+    { id: 'dining', title: 'Dining in the Dark', desc: 'An immersive dining experience in complete darkness, guided by visually impaired hosts, building empathy and advocacy for the visually impaired community in Nairobi.', img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80', accent: 'var(--blue-dark)' },
+    { id: 'food', title: 'Food Wastage Solution', isNew: true, desc: 'A new platform to track, reduce, and redistribute surplus food from Nairobi hotels to communities in need, in collaboration with PadMad and Woodland Star International.', img: 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=900&q=80', accent: 'var(--teal)' },
+    { id: 'finlit', title: 'Financial Literacy Series', desc: 'Equipping young people across Nairobi with practical financial knowledge, from budgeting and saving to navigating Kenya\'s financial ecosystem.', img: '/project-literacy.jpg', accent: 'var(--blue-mid)' },
   ]
   return (
     <section className="section" style={{ background: 'var(--white)' }}>
       <div className="container">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem', flexWrap: 'wrap', gap: '1.5rem' }}>
-          <div><h2 className="section-heading">Projects we've <em>worked on</em></h2></div>
+          <div><h2 className="section-heading" style={{ color: 'var(--blue)' }}>Projects we've worked on</h2></div>
           <Link to="/projects" className="arrow-link">View all projects <ArrowRight /></Link>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '1.5rem' }} className="proj-grid">
@@ -240,8 +246,7 @@ function FeaturedProjects() {
                 <div style={{ position: 'absolute', top: '1rem', left: '1rem', background: p.isNew ? 'var(--teal)' : 'rgba(255,255,255,0.92)', color: p.isNew ? '#fff' : p.accent, fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '0.28rem 0.75rem', borderRadius: '100px' }}>{p.isNew ? 'New' : p.tag}</div>
               </div>
               <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                <div style={{ width: 36, height: 3, borderRadius: 2, background: p.accent, marginBottom: '1rem' }}/>
-                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-dark)', marginBottom: '0.6rem' }}>{p.title}</h3>
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--blue)', marginBottom: '0.6rem' }}>{p.title}</h3>
                 <p style={{ fontSize: '0.88rem', color: 'var(--text-mid)', lineHeight: 1.75, marginBottom: '1.25rem', flex: 1 }}>{p.desc}</p>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '1rem', borderTop: '1px solid var(--border)' }}>
                   <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{p.meta}</span>
@@ -260,14 +265,14 @@ function FeaturedProjects() {
 function FeaturedEvents() {
   const events = [
     { title: 'All Hands Meeting', date: 'July 11, 2026', time: '10:00 AM', location: 'Virtual', type: 'Hub Meeting', upcoming: true },
-    { title: 'Meet the Leader Session', date: 'August 2026', time: 'TBC', location: 'Nairobi', type: 'Community Event', upcoming: true },
-    { title: 'Dining in the Dark', date: 'October 2026', time: 'TBC', location: 'Nairobi', type: 'Community Event', upcoming: true },
+    { title: 'Meet the Leader Session', date: 'August 11, 2026', time: '7:00 PM', location: 'Virtual', type: 'Community Event', upcoming: true },
+    { title: 'Yoga Meetup', date: 'August 8, 2026', time: '7:00 AM', location: 'Nairobi', type: 'Community Event', upcoming: true },
   ]
   return (
     <section className="section" style={{ background: 'var(--blue-light)' }}>
       <div className="container">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem', flexWrap: 'wrap', gap: '1.5rem' }}>
-          <div><span className="eyebrow">Events</span><h2 className="section-heading">Upcoming events</h2></div>
+          <div><span className="eyebrow"></span><h2 className="section-heading">Upcoming events</h2></div>
           <Link to="/events" className="arrow-link">View all events <ArrowRight /></Link>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.25rem' }} className="events-grid">
@@ -300,15 +305,15 @@ function FeaturedEvents() {
 
 function LeadershipPreview() {
   const team = [
-    { name: 'Phylis Atieno', role: 'Curator', color: 'var(--blue)', img: '/phylis.png' },
+    { name: 'Phylis Atieno', role: 'Curator', color: 'var(--blue-dark)', img: '/phylis.png' },
     { name: 'Stella Cherotich', role: 'Vice-Curator', color: 'var(--blue-dark)', img: '/stella.jpg' },
-    { name: 'Alvin Nyaga', role: 'Impact Officer', color: 'var(--teal)', img: '/alvin.jpg' },
+    { name: 'Alvin Nyaga', role: 'Impact Officer', color: 'var(--blue-dark)', img: '/alvin.jpg' },
   ]
   return (
     <section id="team" className="section" style={{ background: 'var(--white)' }}>
       <div className="container">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem', flexWrap: 'wrap', gap: '1.5rem' }}>
-          <div><span className="eyebrow">Leadership</span><h2 className="section-heading">The Curatorship <em> (2026-2027)</em></h2></div>
+          <div><span className="eyebrow"></span><h2 className="section-heading" style={{ color: 'var(--blue)' }}>The Curatorship</h2></div>
           <Link to="/team" className="arrow-link">View all members <ArrowRight /></Link>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }} className="team-preview-grid">
@@ -360,8 +365,8 @@ function JoinSection() {
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {['Aged 18 to 27','Based in Nairobi','Demonstrated impact in your field','Able to commit to hub activities','Aligned with Global Shapers values'].map((c,i) => (
                 <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'rgba(255,255,255,0.8)', fontSize: '0.95rem' }}>
-                  <span style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', border: '1.5px solid rgba(255,255,255,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <svg width="10" height="10" viewBox="0 0 12 10" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M1 5l3 3 7-7"/></svg>
+                  <span style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(255, 255, 255, 0.92)', border: '1.5px solid rgba(255,255,255,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <svg width="10" height="10" viewBox="0 0 12 10" fill="none" stroke="#2e0baeff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M1 5l3 3 7-7"/></svg>
                   </span>
                   {c}
                 </li>
@@ -410,7 +415,6 @@ function JoinSection() {
                 <button type="submit" className="btn btn-white" style={{ width: '100%', justifyContent: 'center', padding: '0.9rem', fontSize: '0.95rem' }} disabled={loading}>
                   {loading ? 'Sending...' : 'Submit Expression of Interest'}
                 </button>
-                <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)', textAlign: 'center' }}>Applications open September 2026.</p>
               </form>
             )}
           </div>
