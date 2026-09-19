@@ -30,7 +30,7 @@ const socials = [
 
 const columns = [
   { title: 'Navigate', links: [['About', '/#about'], ['Our Pillars', '/#pillars'], ['Projects', '/projects'], ['Events', '/events'], ['Blog', '/blog'], ['Team', '/team']] },
-  { title: 'Get Involved', links: [['Join the Hub', '/#join'], ['Contact Us', 'mailto:globalshapersnairobi@gmail.com'], ['Toplink Profile', 'https://initiatives.weforum.org/nairobi-hub/'], ['WEF', 'https://weforum.org']] },
+  { title: 'Get Involved', links: [['Join the Hub', '/#join'], ['Contact Us', 'mailto:contact@globalshapersnairobi.org'], ['Toplink Profile', 'https://initiatives.weforum.org/nairobi-hub/'], ['WEF', 'https://weforum.org']] },
 ]
 
 function FooterLink({ href, children, className }) {
