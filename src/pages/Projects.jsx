@@ -1,6 +1,9 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
+// Edit project content here.
+// tag: the pillar label above the title. desc: the paragraphs on the card.
+// partners: shown at the bottom of the card. isNew: shows a "New" badge. img: photo in /public or a full image URL.
 const projects = [
   {
     id: 'technovation',
@@ -9,11 +12,34 @@ const projects = [
     img: '/project-technovation.JPG',
     accent: 'var(--blue)',
     desc: [
-      'Technovation is the world\'s largest technology entrepreneurship programme for girls, and Global Shapers Nairobi has been its delivery partner in Kenya since 2021. Through a structured 12-week curriculum, teams of young women aged 10 to 18 identify a problem in their community, conduct market research, build a mobile application, and pitch their solution to a global panel of judges.',
+      'Technovation is the world\'s largest technology entrepreneurship programme for girls, and Global Shapers Nairobi has been its delivery partner in Kenya since 2021. Through a structured 12-week curriculum, teams of young girls aged 10 to 18 identify a problem in their community, conduct market research, build a mobile application, and pitch their solution to a global panel of judges.',
       'In 2024, the Global Shapers Nairobi Hub was honored to receive the Innovation Prize from the Global Shapers Community, Accenture, and the Global Alliance for YOUth. This recognition enabled us to scale our reach to communities in Kibera, Kawangware, Kakuma, Narok, Samburu, and Homabay.',
     ],
     impact: [],
-    partners: ['Compassion International Kenya', 'KidsCodeLab', 'Accenture', 'Global Alliance for YOUth'],
+  },
+  {
+    id: 'meet-leader',
+    tag: 'Leadership',
+    title: 'Meet the Leader Series',
+    img: '/MTL.webp',
+    accent: 'var(--blue-dark)',
+    desc: [
+      'The Meet the Leader Series brings distinguished leaders from different industries and sectors into conversation with young leaders in Nairobi.',
+      'The sessions create space for open dialogue, practical insights, and direct mentorship, giving participants the opportunity to learn from leaders about their experiences, challenges, and leadership journeys.',
+    ],
+    impact: [],
+  },
+  {
+    id: 'upscale',
+    tag: 'Innovation and Entrepreneurship',
+    title: 'Upscale Artist Seminar',
+    img: '/upscale.webp',
+    accent: 'var(--teal)',
+    desc: [
+      'The Upscale Artist Seminar is designed for established visual artists and designers looking to strengthen both their creative and business practices.',
+      'The seminar provides practical knowledge and insights to help artists navigate the business side of their work while creating space for learning, growth, and connection within the creative community.',
+    ],
+    impact: [],
   },
   {
     id: 'dining',
@@ -27,22 +53,6 @@ const projects = [
       'After a successful inaugural edition, Dining in the Dark returns in October 2026 with an expanded format, new partnerships, and a stronger focus on accessible fundraising.',
     ],
     impact: [],
-    partners: ['Kenya Society for the Blind'],
-  },
-  {
-    id: 'food',
-    tag: 'Innovation and Entrepreneurship',
-    isNew: true,
-    title: 'Food Wastage Solution',
-    img: 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=900&q=80',
-    accent: 'var(--teal)',
-    desc: [
-      'Nairobi generates between 2,000 and 2,500 tonnes of waste daily, 80% of which is organic. Hotels and restaurants are significant contributors, yet edible surplus food routinely goes to waste while communities nearby face food insecurity.',
-      'The Food Wastage Solution project is building a lightweight digital platform that helps Nairobi hotels track how much food is wasted, reduce waste through data-driven insights, and redirect surplus edible food to vetted community partners, including schools and shelters, before it becomes waste.',
-      'This project is being developed in collaboration with PadMad and Woodland Star International School, combining Global Shapers members\' professional expertise with student innovation. The project will culminate in an Impact Dinner event where the platform is demonstrated live.',
-    ],
-    impact: [],
-    partners: ['Woodland Star International School'],
   },
   {
     id: 'finlit',
@@ -55,7 +65,7 @@ const projects = [
       'Sessions cover budgeting and saving, understanding credit and debt, investing basics, navigating Kenya\'s financial system including mobile money and banking, and planning for long-term financial goals. The programme is designed to be relatable and grounded in the real financial realities of young Kenyans.',
       'A new cohort launches in January 2027, building on lessons from previous editions and incorporating updated content on digital financial tools and platforms.',
     ],
-    partners: ['Kenya Red Cross'],
+    impact: [],
   },
 ]
 
@@ -72,58 +82,78 @@ export default function ProjectsPage() {
   }, [loc])
 
   return (
-    <div style={{ paddingTop: '5rem' }}>
-      
+    <div style={{ paddingTop: '4.5rem', background: 'var(--off-white)' }}>
+      <section className="pp-hero">
+        <div className="container">
+          <h1>Explore <em>our</em> projects</h1>
+        </div>
+      </section>
 
-      {/* Projects */}
-      <div style={{ background: 'var(--white)' }}>
-        {projects.map((p, i) => (
-          <section key={p.id} id={p.id} style={{
-            padding: 'clamp(3rem,6vw,5rem) 0',
-            background: i % 2 === 0 ? 'var(--white)' : 'var(--off-white)',
-            borderTop: '1px solid var(--border)',
-          }}>
-            <div className="container">
-              <div style={{ display: 'grid', gridTemplateColumns: i % 2 === 0 ? '1fr 1fr' : '1fr 1fr', gap: '4rem', alignItems: 'start' }} className="proj-detail-grid">
-                {/* Image - alternate sides */}
-                <div style={{ order: i % 2 === 0 ? 0 : 1 }}>
-                  <div style={{ borderRadius: 'var(--radius)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)', aspectRatio: '16/10' }}>
-                    <img src={p.img} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  </div>
-                 
+      <section className="pp-grid-wrap">
+        <div className="container" style={{ maxWidth: 1320 }}>
+          <div className="pp-grid">
+            {projects.map((p, i) => (
+              <article key={p.id} id={p.id} className="pc-card">
+                <div className="pc-img">
+                  <img src={p.img} alt="" loading={i < 2 ? 'eager' : 'lazy'} />
+                  {p.isNew && <span className="pc-new">New</span>}
                 </div>
-
-                {/* Text */}
-                <div style={{ order: i % 2 === 0 ? 1 : 0 }}>
-                  <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
-                    <span style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--blue)', border: '1px solid var(--blue)', borderRadius: '100px', padding: '0.25rem 0.75rem' }}>{p.tag}</span>
-                  </div>
-                  <h2 style={{ fontSize: 'clamp(1.8rem,3.5vw,2.8rem)', fontWeight: 800, color: 'var(--text-dark)', letterSpacing: '-0.02em', marginBottom: '0.5rem' }}>{p.title}</h2>
-                  <p style={{ fontSize: '1rem', color: 'var(--blue)', fontWeight: 600, marginBottom: '1.5rem' }}>{p.tagline}</p>
-                  {p.desc.map((d, j) => (
-                    <p key={j} style={{ color: 'var(--text-mid)', fontSize: '0.95rem', lineHeight: 1.8, marginBottom: '1rem' }}>{d}</p>
-                  ))}
-                  {p.partners.length > 0 && (
-                    <div style={{ marginTop: '1.5rem', paddingTop: '1.5rem', borderTop: '1px solid var(--border)' }}>
-                      <p style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--text-muted)', marginBottom: '0.6rem' }}>Partners</p>
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                        {p.partners.map(partner => (
-                          <span key={partner} style={{ fontSize: '0.82rem', padding: '0.3rem 0.85rem', borderRadius: '100px', background: 'var(--blue-light)', color: 'var(--blue)', fontWeight: 500 }}>{partner}</span>
-                        ))}
-                      </div>
+                <div className="pc-content">
+                  <span className="pc-label">{p.tag}</span>
+                  <h2>{p.title}</h2>
+                  {p.desc.map((d, j) => <p key={j}>{d}</p>)}
+                  {p.partners?.length > 0 && (
+                    <div className="pc-partners">
+                      <span>Partners</span>
+                      <ul>
+                        {p.partners.map(partner => <li key={partner}>{partner}</li>)}
+                      </ul>
                     </div>
                   )}
                 </div>
-              </div>
-            </div>
-          </section>
-        ))}
-      </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <style>{`
-        @media (max-width: 768px) {
-          .proj-detail-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
-          .proj-detail-grid > div { order: unset !important; }
+        .pp-hero {
+          text-align: center; color: var(--white);
+          padding: clamp(4rem, 8vw, 6rem) 0 clamp(9rem, 16vw, 13rem);
+          background:
+            radial-gradient(circle at 20% 20%, rgba(30,91,201,0.55) 0%, transparent 45%),
+            radial-gradient(circle at 85% 70%, rgba(0,172,193,0.18) 0%, transparent 45%),
+            var(--blue-dark);
+        }
+        .pp-hero h1 { font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 1.25rem; }
+        .pp-hero h1 em { font-style: italic; font-weight: 300; }
+        .pp-hero p { color: rgba(255,255,255,0.75); font-size: 1rem; line-height: 1.7; max-width: 520px; margin: 0 auto; }
+
+        .pp-grid-wrap { padding-bottom: clamp(4rem, 8vw, 6rem); margin-top: clamp(-8rem, -12vw, -6rem); }
+        .pp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; }
+
+        .pc-card {
+          background: var(--white); border-radius: 20px; padding: 0.75rem 0.75rem 1.5rem;
+          box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+          display: flex; flex-direction: column; scroll-margin-top: 6rem;
+        }
+        .pc-img { position: relative; aspect-ratio: 2 / 1; border-radius: 14px; overflow: hidden; background: var(--blue-dark); margin-bottom: 1.5rem; }
+        .pc-img img { width: 100%; height: 100%; object-fit: cover; }
+        .pc-new { position: absolute; top: 0.85rem; left: 0.85rem; background: var(--teal); color: #fff; font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 100px; }
+        .pc-content { padding: 0 1rem; display: flex; flex-direction: column; flex: 1; }
+        .pc-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--blue); margin-bottom: 0.35rem; }
+        .pc-content h2 { font-size: 1.3rem; font-weight: 700; color: var(--blue-dark); letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 1rem; }
+        .pc-content p { font-size: 0.9rem; line-height: 1.7; color: var(--text-mid); }
+        .pc-content p + p { margin-top: 0.85rem; }
+
+        .pc-partners { margin-top: auto; padding-top: 1.5rem; }
+        .pc-partners > span { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-dark); margin: 0.5rem 0 0.6rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+        .pc-partners ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+        .pc-partners li { font-size: 0.8rem; padding: 0.3rem 0.8rem; border-radius: 100px; background: var(--blue-light); color: var(--blue); font-weight: 500; }
+
+        @media (max-width: 800px) {
+          .pp-grid { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
         }
       `}</style>
     </div>

@@ -15,7 +15,7 @@ export default function Nav() {
 
   const onDark = isHome && !scrolled
   const navBg = scrolled ? 'rgba(255,255,255,0.97)' : isHome ? 'transparent' : 'var(--white)'
-  const logoSrc = onDark ? '/logo-dark.jpg' : '/logo-light.jpeg'
+  const logoSrc = onDark ? '/logo-dark.svg' : '/logo-light.jpeg'
   const textColor = onDark ? 'rgba(255,255,255,0.9)' : 'var(--text-mid)'
   const hoverBg = onDark ? 'rgba(255,255,255,0.1)' : 'var(--blue-light)'
   const hoverColor = onDark ? '#fff' : 'var(--blue)'
@@ -26,7 +26,6 @@ const buttonHoverBg = onDark ? 'rgba(255,255,255,0.9)' : 'var(--blue-hover)'
 
   const links = [
     { label: 'About', to: '/#about' },
-    { label: 'Pillars', to: '/pillars' },
     { label: 'Projects', to: '/projects' },
     { label: 'Events', to: '/events' },
     { label: 'Blog', to: '/blog' },
@@ -46,10 +45,17 @@ const buttonHoverBg = onDark ? 'rgba(255,255,255,0.9)' : 'var(--blue-hover)'
       }}>
         {/* Logo */}
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-          <img src={logoSrc} alt="Global Shapers Nairobi"
-            style={{ height: 40, width: 40, objectFit: 'contain', borderRadius: 4 }}
-            onError={e => e.target.style.display='none'}
-          />
+          <img
+  src={logoSrc}
+  alt="Global Shapers Nairobi"
+  style={{
+    height: onDark ? 48 : 40,
+    width: onDark ? 48 : 40,
+    objectFit: 'contain',
+    borderRadius: 4,
+  }}
+  onError={e => e.target.style.display='none'}
+/>
           <span style={{ fontSize: '0.88rem', fontWeight: 700, color: onDark ? '#fff' : 'var(--text-dark)', lineHeight: 1.2 }}>
             Global Shapers<br/>
             <span style={{ fontWeight: 400, fontSize: '0.72rem', color: onDark ? 'rgba(255,255,255,0.65)' : 'var(--text-muted)' }}>Nairobi</span>
