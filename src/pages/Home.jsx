@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import { sendForm, FORM_EMAIL } from '../lib/sendForm'
 
 const ArrowRight = ({ size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -635,7 +636,19 @@ function LeadershipPreview() {
 function JoinSection() {
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
-  const onSubmit = e => { e.preventDefault(); setLoading(true); setTimeout(() => { setLoading(false); setSent(true); }, 1200); }
+  const [error, setError] = useState(false)
+  const onSubmit = async e => {
+    e.preventDefault()
+    setLoading(true); setError(false)
+    try {
+      await sendForm('New expression of interest: Global Shapers Nairobi', e.target)
+      setSent(true)
+    } catch {
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const criteria = [
     { text: 'Aged 18 to 27', icon: <><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></> },
@@ -680,14 +693,14 @@ function JoinSection() {
             ) : (
               <form onSubmit={onSubmit} className="join-form">
                 <div className="join-row">
-                  <label>First name<input type="text" placeholder="Wanjiru" autoComplete="given-name" required /></label>
-                  <label>Last name<input type="text" placeholder="Kamau" autoComplete="family-name" required /></label>
+                  <label>First name<input name="First name" type="text" placeholder="Wanjiru" autoComplete="given-name" required /></label>
+                  <label>Last name<input name="Last name" type="text" placeholder="Kamau" autoComplete="family-name" required /></label>
                 </div>
-                <label>Email<input type="email" placeholder="you@example.com" autoComplete="email" required /></label>
-                <label>Occupation<input type="text" placeholder="What do you do?" required /></label>
+                <label>Email<input name="Email" type="email" placeholder="you@example.com" autoComplete="email" required /></label>
+                <label>Occupation<input name="Occupation" type="text" placeholder="What do you do?" required /></label>
                 <label>Which pillar excites you most?
                   <span className="join-select">
-                    <select required defaultValue="">
+                    <select name="Pillar of interest" required defaultValue="">
                       <option value="" disabled>Select a pillar</option>
                       <option>Innovation &amp; Entrepreneurship</option>
                       <option>Education &amp; Future of Work</option>
@@ -697,7 +710,14 @@ function JoinSection() {
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
                   </span>
                 </label>
-                <label>Why do you want to join?<textarea rows="4" placeholder="Tell us about the work you do and what you'd bring to the hub." /></label>
+                <label>Why do you want to join?<textarea name="Why they want to join" rows="4" placeholder="Tell us about the work you do and what you'd bring to the hub." /></label>
+                {/* Hidden spam trap: people never see or fill this, bots usually do */}
+                <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: 'none' }} />
+                {error && (
+                  <p role="alert" className="form-error">
+                    Something went wrong and your details were not sent. Please try again, or email us at <a href={`mailto:${FORM_EMAIL}`}>{FORM_EMAIL}</a>.
+                  </p>
+                )}
                 <button type="submit" className="join-submit" disabled={loading}>
                   {loading ? 'Sending...' : 'Submit expression of interest'}
                 </button>
@@ -757,6 +777,8 @@ function JoinSection() {
         .join-submit:hover:not(:disabled) { background: var(--blue-hover); }
         .join-submit:disabled { opacity: 0.7; cursor: default; }
         .join-submit:focus-visible { outline: 2px solid var(--blue-dark); outline-offset: 2px; }
+        .form-error { font-size: 0.82rem; line-height: 1.5; color: #B42318; background: #FEF3F2; border: 1px solid #FECDCA; border-radius: 10px; padding: 0.7rem 0.9rem; }
+        .form-error a { color: inherit; text-decoration: underline; }
 
         @media (max-width: 900px) {
           .join-panel { grid-template-columns: 1fr; padding: 2rem 1.25rem 1.25rem; gap: 2rem; }

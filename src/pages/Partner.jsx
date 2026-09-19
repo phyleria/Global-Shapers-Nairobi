@@ -5,6 +5,7 @@ import {
   Globe2,
   CircleDollarSign,
 } from 'lucide-react'
+import { sendForm, FORM_EMAIL } from '../lib/sendForm'
 
 const partnerTypes = [
   {
@@ -108,18 +109,26 @@ function PartnerLogo({ p }) {
   )
 }
 
-const CONTACT_EMAIL = 'contact@globalshapersnairobi.com'
+const CONTACT_EMAIL = FORM_EMAIL
 
 export default function PartnerPage() {
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
 
   useEffect(() => { window.scrollTo(0, 0) }, [])
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault()
-    setLoading(true)
-    setTimeout(() => { setLoading(false); setSent(true) }, 1200)
+    setLoading(true); setError(false)
+    try {
+      await sendForm('New partnership enquiry: Global Shapers Nairobi', e.target)
+      setSent(true)
+    } catch {
+      setError(true)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -202,18 +211,18 @@ export default function PartnerPage() {
                 </div>
               ) : (
                 <form onSubmit={onSubmit} className="pt-form">
-                  <label>Organisation name<input type="text" placeholder="Your organisation" autoComplete="organization" required /></label>
+                  <label>Organisation name<input name="Organisation" type="text" placeholder="Your organisation" autoComplete="organization" required /></label>
                   <div className="pt-row">
-                    <label>First name<input type="text" placeholder="Wanjiru" autoComplete="given-name" required /></label>
-                    <label>Last name<input type="text" placeholder="Kamau" autoComplete="family-name" required /></label>
+                    <label>First name<input name="First name" type="text" placeholder="Wanjiru" autoComplete="given-name" required /></label>
+                    <label>Last name<input name="Last name" type="text" placeholder="Kamau" autoComplete="family-name" required /></label>
                   </div>
                   <div className="pt-row">
-                    <label>Email<input type="email" placeholder="you@example.com" autoComplete="email" required /></label>
-                    <label>Website <span className="pt-opt">(optional)</span><input type="url" placeholder="https://" autoComplete="url" /></label>
+                    <label>Email<input name="Email" type="email" placeholder="you@example.com" autoComplete="email" required /></label>
+                    <label>Website <span className="pt-opt">(optional)</span><input name="Website" type="url" placeholder="https://" autoComplete="url" /></label>
                   </div>
                   <label>Partnership type
                     <span className="pt-select">
-                      <select required defaultValue="">
+                      <select name="Partnership type" required defaultValue="">
                         <option value="" disabled>Select a partnership type</option>
                         {partnerTypes.map(p => <option key={p.title}>{p.title.replace(/s$/, '')}</option>)}
                         <option>Other</option>
@@ -221,7 +230,14 @@ export default function PartnerPage() {
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
                     </span>
                   </label>
-                  <label>Tell us more<textarea rows="4" required placeholder="Describe your organisation and how you see us working together." /></label>
+                  <label>Tell us more<textarea name="Message" rows="4" required placeholder="Describe your organisation and how you see us working together." /></label>
+                  {/* Hidden spam trap: people never see or fill this, bots usually do */}
+                  <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ display: 'none' }} />
+                  {error && (
+                    <p role="alert" className="form-error">
+                      Something went wrong and your enquiry was not sent. Please try again, or email us at <a href={`mailto:${FORM_EMAIL}`}>{FORM_EMAIL}</a>.
+                    </p>
+                  )}
                   <button type="submit" className="pt-submit" disabled={loading}>
                     {loading ? 'Sending...' : 'Send partnership enquiry'}
                   </button>
@@ -363,6 +379,8 @@ export default function PartnerPage() {
         }
         .pt-submit:hover:not(:disabled) { background: var(--blue-hover); }
         .pt-submit:disabled { opacity: 0.7; cursor: default; }
+        .form-error { font-size: 0.82rem; line-height: 1.5; color: #B42318; background: #FEF3F2; border: 1px solid #FECDCA; border-radius: 10px; padding: 0.7rem 0.9rem; }
+        .form-error a { color: inherit; text-decoration: underline; }
 
         .pt-page a:focus-visible, .pt-submit:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
         .pt-points a:focus-visible { outline-color: var(--white); }
