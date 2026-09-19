@@ -323,7 +323,7 @@ function Pillars() {
 
 function FeaturedProjects() {
   const projects = [
-    { id: 'technovation', title: 'Technovation', pillar: 'Education & Future of Work', desc: 'A global tech education program that empowers girls to become innovators and problem-solvers. For over 4 years the Nairobi Hub has enrolled students from various schools across Kenya in the 12-week program where they identify community issues and develop mobile apps.', img: '/project-technovation.JPG' },
+    { id: 'technovation', title: 'Technovation', pillar: 'Education & Future of Work', desc: 'A global tech education program that empowers girls to become innovators and problem-solvers. For over 4 years the Nairobi Hub has enrolled students from various schools across Kenya in the 12-week program.', img: '/project-technovation.JPG' },
     { id: 'dining', title: 'Dining in the Dark', pillar: 'Underserved Communities', desc: 'An immersive dining experience in complete darkness, guided by visually impaired hosts, building empathy and advocacy for the visually impaired community in Nairobi.', img: '/dining.webp' },
     { id: 'food', title: 'Meet the Leader Series', pillar: 'Leadership & Empowerment', desc: 'Distinguished leaders from a range of industries and sectors share their leadership journeys and insights with young leaders in Nairobi. Encouraging open dialogue and direct mentorship opportunities.', img: '/MTL.webp' },
     { id: 'finlit', title: 'Financial Literacy Series', pillar: 'Education & Future of Work', desc: 'Equipping young people across Nairobi with practical financial knowledge, from budgeting and saving to navigating Kenya\'s financial ecosystem.', img: '/project-literacy.jpg' },
