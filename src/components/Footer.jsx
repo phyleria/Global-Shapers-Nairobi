@@ -84,7 +84,7 @@ export default function Footer() {
 
       <style>{`
         .site-footer {
-          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+          font-family: inherit;
           background: var(--blue-dark); color: var(--white);
           padding: 4rem 0 2.25rem;
         }
