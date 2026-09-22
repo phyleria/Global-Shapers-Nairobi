@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom'
 // img: photo in /public or a full image URL.
 const events = [
   { title: 'Meet the Leader Session', date: '2026-08-20', time: '7:00 PM', location: 'Virtual', desc: 'An honest conversation with two leaders, Joseph Nguthiru and Michael Waiyaki, who are helping shape a more sustainable future for Nairobi.', open: true, link: '', img: '/MTL (3).png' },
-  { title: 'How to Get Into a Top Masters Program', date: '2026-09-30', time: '7:00 PM', location: 'Virtual',   open: true, img: '/gsn-team.jpeg', link: '/events' },
-  { title: 'Open House Event', date: '2026-10-03', time: '7:00 PM', location: 'Nairobi', open: true, img: '/About-3.jpg', link: '/events' },
+  { title: 'How to Get Into a Top Masters Program', date: '2026-09-30', time: '7:00 PM', location: 'Virtual',   open: false, img: '/gsn-team.jpeg', link: '/events' },
+  { title: 'Open House Event', date: '2026-10-03', time: '7:00 PM', location: 'Virtual', open: true, img: '/About-3.jpg', link: 'https://luma.com/r4c96dni' },
 
 ]
 

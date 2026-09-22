@@ -331,7 +331,7 @@ export default function PartnerPage() {
         /* Enquiry panel: same design as the home page join section */
         .pt-contact { padding: clamp(4rem, 7vw, 5.5rem) 0 clamp(4rem, 8vw, 6rem); scroll-margin-top: 4rem; }
         .pt-panel {
-          font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+          font-family: inherit;
           position: relative; overflow: hidden; border-radius: 28px;
           display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
           padding: 2rem 2rem 2rem 3.5rem;
