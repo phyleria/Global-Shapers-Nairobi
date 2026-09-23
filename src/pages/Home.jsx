@@ -463,8 +463,24 @@ function FeaturedEvents() {
   // Add an image for each event: put the file in /public and use '/file-name.jpg'
   // link: where "Register now" goes (a registration form URL, or '/events')
   const events = [
-    { title: 'How to Get Into a Top Masters Program', date: '2026-09-30', time: '7:00 PM', location: 'Virtual', img: '/gsn-team.jpeg', link: '/events' },
-    { title: 'Open House Event', date: '2026-10-03', time: '7:00 PM', location: 'Nairobi', img: '/About-3.jpg', link: '/events' },
+    {
+      title: 'How to Get Into a Top Masters Program',
+      date: '2026-09-30',
+      time: '7:00 PM',
+      location: 'Virtual',
+      open: false,
+      img: '/gsn-team.jpeg',
+      link: '/events'
+    },
+    {
+      title: 'Open House Event',
+      date: '2026-10-03',
+      time: '7:00 PM',
+      location: 'Virtual',
+      open: true,
+      img: '/About-3.jpg',
+      link: 'https://luma.com/r4c96dni'
+    },
   ]
 
   const parts = iso => {
@@ -479,9 +495,23 @@ function FeaturedEvents() {
   return (
     <section className="section" style={{ background: 'var(--blue-light)' }}>
       <div className="container">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem', flexWrap: 'wrap', gap: '1.5rem' }}>
-          <h2 className="section-heading" style={{ color: 'var(--blue)' }}>Upcoming events</h2>
-          <Link to="/events" className="arrow-link">View all events <ArrowRight /></Link>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+            marginBottom: '3rem',
+            flexWrap: 'wrap',
+            gap: '1.5rem'
+          }}
+        >
+          <h2 className="section-heading" style={{ color: 'var(--blue)' }}>
+            Upcoming events
+          </h2>
+
+          <Link to="/events" className="arrow-link">
+            View all events <ArrowRight />
+          </Link>
         </div>
 
         <div className="ev-grid">
@@ -489,32 +519,98 @@ function FeaturedEvents() {
             const d = parts(e.date)
             const isExternal = e.link.startsWith('http')
             const RegisterTag = isExternal ? 'a' : Link
-            const registerProps = isExternal ? { href: e.link, target: '_blank', rel: 'noreferrer' } : { to: e.link }
+
+            const registerProps = isExternal
+              ? {
+                  href: e.link,
+                  target: '_blank',
+                  rel: 'noreferrer'
+                }
+              : {
+                  to: e.link
+                }
+
             return (
               <article key={i} className="ev-card">
                 <img src={e.img} alt="" loading="lazy" />
                 <div className="ev-overlay" />
 
-                <div className="ev-date" aria-label={`${d.weekday} ${d.day} ${d.month}`}>
+                <div
+                  className="ev-date"
+                  aria-label={`${d.weekday} ${d.day} ${d.month}`}
+                >
                   <span className="ev-weekday">{d.weekday}</span>
-                  <span className="ev-daymonth"><strong>{d.day}</strong>{d.month}</span>
+                  <span className="ev-daymonth">
+                    <strong>{d.day}</strong>
+                    {d.month}
+                  </span>
                 </div>
 
-                <Link to="/events" className="ev-info" aria-label={`Details for ${e.title}`}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                <Link
+                  to="/events"
+                  className="ev-info"
+                  aria-label={`Details for ${e.title}`}
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4M12 8h.01" />
+                  </svg>
                 </Link>
 
                 <div className="ev-body">
                   <p className="ev-loc">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      {e.location === 'Virtual'
-                        ? <><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></>
-                        : <><path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></>}
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      {e.location === 'Virtual' ? (
+                        <>
+                          <rect x="2" y="4" width="20" height="13" rx="2" />
+                          <path d="M8 21h8M12 17v4" />
+                        </>
+                      ) : (
+                        <>
+                          <path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z" />
+                          <circle cx="12" cy="10" r="2.5" />
+                        </>
+                      )}
                     </svg>
-                    {e.location}{e.time && ` · ${e.time}`}
+
+                    {e.location}
+                    {e.time && ` · ${e.time}`}
                   </p>
+
                   <h3 className="ev-title">{e.title}</h3>
-                  <RegisterTag {...registerProps} className="ev-btn">Register now</RegisterTag>
+
+                  {e.open ? (
+                    <RegisterTag
+                      {...registerProps}
+                      className="ev-btn"
+                    >
+                      Register now
+                    </RegisterTag>
+                  ) : (
+                    <span className="ev-btn ev-btn-muted">
+                      Hub members only
+                    </span>
+                  )}
                 </div>
               </article>
             )
@@ -523,48 +619,169 @@ function FeaturedEvents() {
       </div>
 
       <style>{`
-        .ev-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-        .ev-card {
-          position: relative; height: 440px; border-radius: 18px; overflow: hidden;
-          background: var(--blue-dark); color: var(--white);
-          box-shadow: var(--shadow-sm); transition: box-shadow 0.3s;
+        .ev-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
         }
-        .ev-card:hover { box-shadow: var(--shadow-lg); }
-        .ev-card > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+        .ev-card {
+          position: relative;
+          height: 440px;
+          border-radius: 18px;
+          overflow: hidden;
+          background: var(--blue-dark);
+          color: var(--white);
+          box-shadow: var(--shadow-sm);
+          transition: box-shadow 0.3s;
+        }
+
+        .ev-card:hover {
+          box-shadow: var(--shadow-lg);
+        }
+
+        .ev-card > img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
         .ev-overlay {
-          position: absolute; inset: 0;
-          background: linear-gradient(to bottom, rgba(4,26,70,0.25) 0%, rgba(4,26,70,0.35) 45%, rgba(4,26,70,0.85) 100%);
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to bottom,
+            rgba(4,26,70,0.25) 0%,
+            rgba(4,26,70,0.35) 45%,
+            rgba(4,26,70,0.85) 100%
+          );
         }
 
         .ev-date {
-          position: absolute; top: 1rem; left: 1rem; width: 58px;
-          border-radius: 8px; overflow: hidden; text-align: center;
+          position: absolute;
+          top: 1rem;
+          left: 1rem;
+          width: 58px;
+          border-radius: 8px;
+          overflow: hidden;
+          text-align: center;
           box-shadow: 0 4px 14px rgba(0,0,0,0.2);
         }
-        .ev-weekday { display: block; background: var(--white); color: var(--text-dark); font-size: 0.75rem; font-weight: 500; padding: 0.3rem 0; }
-        .ev-daymonth { display: block; background: var(--blue-dark); color: var(--white); font-size: 0.72rem; padding: 0.35rem 0 0.45rem; line-height: 1.2; }
-        .ev-daymonth strong { display: block; font-size: 1.35rem; font-weight: 600; }
+
+        .ev-weekday {
+          display: block;
+          background: var(--white);
+          color: var(--text-dark);
+          font-size: 0.75rem;
+          font-weight: 500;
+          padding: 0.3rem 0;
+        }
+
+        .ev-daymonth {
+          display: block;
+          background: var(--blue-dark);
+          color: var(--white);
+          font-size: 0.72rem;
+          padding: 0.35rem 0 0.45rem;
+          line-height: 1.2;
+        }
+
+        .ev-daymonth strong {
+          display: block;
+          font-size: 1.35rem;
+          font-weight: 600;
+        }
 
         .ev-info {
-          position: absolute; top: 1rem; right: 1rem; width: 34px; height: 34px; border-radius: 8px;
-          display: inline-flex; align-items: center; justify-content: center;
-          background: rgba(255,255,255,0.18); color: var(--white); transition: background 0.2s;
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          width: 34px;
+          height: 34px;
+          border-radius: 8px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(255,255,255,0.18);
+          color: var(--white);
+          transition: background 0.2s;
         }
-        .ev-info:hover { background: rgba(255,255,255,0.3); }
 
-        .ev-body { position: absolute; left: 1.25rem; right: 1.25rem; bottom: 1.25rem; }
-        .ev-loc { display: flex; align-items: center; gap: 0.45rem; font-size: 0.82rem; color: rgba(255,255,255,0.85); margin-bottom: 0.5rem; }
-        .ev-title { font-size: 1.6rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -0.01em; }
+        .ev-info:hover {
+          background: rgba(255,255,255,0.3);
+        }
+
+        .ev-body {
+          position: absolute;
+          left: 1.25rem;
+          right: 1.25rem;
+          bottom: 1.25rem;
+        }
+
+        .ev-loc {
+          display: flex;
+          align-items: center;
+          gap: 0.45rem;
+          font-size: 0.82rem;
+          color: rgba(255,255,255,0.85);
+          margin-bottom: 0.5rem;
+        }
+
+        .ev-title {
+          font-size: 1.6rem;
+          font-weight: 700;
+          line-height: 1.2;
+          margin-bottom: 1.5rem;
+          letter-spacing: -0.01em;
+        }
+
         .ev-btn {
-          display: block; text-align: center; padding: 0.85rem; border-radius: 8px;
-          background: var(--white); color: var(--blue-dark); font-size: 0.9rem; font-weight: 600;
+          display: block;
+          text-align: center;
+          padding: 0.85rem;
+          border-radius: 8px;
+          background: var(--white);
+          color: var(--blue-dark);
+          font-size: 0.9rem;
+          font-weight: 600;
           transition: background 0.25s, color 0.25s;
         }
-        .ev-card:hover .ev-btn { background: rgba(6,50,133,0.85); color: var(--white); }
-        .ev-btn:focus-visible, .ev-info:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
 
-        @media (max-width: 900px) { .ev-grid { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 600px) { .ev-grid { grid-template-columns: 1fr; } .ev-card { height: 400px; } }
+        .ev-btn-muted {
+          background: rgba(255,255,255,0.2);
+          color: var(--white);
+          border: 1px solid rgba(255,255,255,0.35);
+          cursor: default;
+        }
+
+        .ev-card:hover .ev-btn:not(.ev-btn-muted) {
+          background: rgba(6,50,133,0.85);
+          color: var(--white);
+        }
+
+        .ev-btn:focus-visible,
+        .ev-info:focus-visible {
+          outline: 2px solid var(--white);
+          outline-offset: 2px;
+        }
+
+        @media (max-width: 900px) {
+          .ev-grid {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .ev-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .ev-card {
+            height: 400px;
+          }
+        }
       `}</style>
     </section>
   )
